@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <title>Chromecast</title>
+  <style>
+  body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+  }
+  img {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  @media screen and (max-width: 1024px) {
+    img {
+      left: 50%;
+      margin-left: -512px;
+    }
+  }
+  .potato {
+     position: relative;
+     width: 100%;
+  }
+  span {
+    position: relative;
+    color: white;
+  }
+  </style>
+</head>
+<body>
+<div class="potato">
+<img id='image' src=></img>
+<span id ="hours"></span><span> hours, </span><span id="minutes"></span><span> minutes.</span>
+<span id ="degrees"></span><span> degrees, with </span><span id="description"></span><span>.</span>
+</div>
+<script>
+$(document).ready(function() {
+  console.log("in doc.ready");
+  var x = 0;
+  setInterval(function(){
+    $.ajax({
+      url: "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=America/New_York",
+      dataType: "json",
+      method: "GET",
+      success: (response) => {
+        document.getElementById("hours").innerHTML=response.hours;
+        document.getElementById("minutes").innerHTML=response.minutes;
+      }
+    })
+  }, 1000 );
+  setInterval(function() {
+    $.ajax({
+      url:"https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=e68ab3b3b9959193e56288802e40cda1&gallery_id=72157668416599420&format=json&nojsoncallback=1&auth_token=72157668701107930-c328c505184cf379&api_sig=ca013cd9a08f2644d0fa836dd22c2b60",
+      dataType: "json",
+      method:"GET",
+      success: (response) => {
+        console.log(response);
+        var id = response.photos.photo[x].id;
+        var farm = response.photos.photo[x].farm;
+        var serverid = response.photos.photo[x].server;
+        var secret = response.photos.photo[x].secret;
+        var imgurl = "https://farm"+ farm + ".staticflickr.com/" + serverid + "/" + id + "_" + secret +".jpg";
+        x = x + 1;
+        document.getElementById('image').src = imgurl;
+      }
+    });
+  }, 5000 );
+  setInterval(function(){
+  var longitude;
+  var latitude;
+    function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+          longitude = Math.round(position.coords.longitude);
+          latitude = Math.round(position.coords.latitude);
+        } else {
+          x.innerHTML = "We're sorry, we cannot provide your weather because geolocation is not supported by this browser.";
+        }
+      }
+      $.ajax({
+        url: "http://api.openweathermap.org/data/2.5/weather?q=New_York&appid=a5207858c308d63e6aa27868ae8d5740&units=imperial",
+        dataType: "json",
+        type: "GET",
+        success: (response) => {
+          console.log(response.main);
+          document.getElementById('degrees').innerHTML = response.main.temp;
+          document.getElementById('description').innerHTML = response.weather[0].description;
+        }
+      })
+  }, 5000 );
+});
+</script>
+</body>
+</html>

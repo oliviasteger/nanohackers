@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Random User API</title>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<style>
+  body {
+    background-color: #ccffff;
+    color: black;
+  }
+  h1 {
+    color: olive;
+  }
+</style>
+</head>
+<body>
+<center><h1> The Random User Interface</h1>
+<button id = "generateuser">Find a random user</button>
+<br><br>
+<div id = "fullname"></div>
+<div id = "gender"></div>
+<div id = "location"></div> <!-- Display in google maps AND in text-->
+<div id = "email"></div>
+<div id ="username"></div>
+<div id = "phonenumber"></div>
+<img id = "avatar"></img></center>
+<script>
+$("#generateuser").click(function(){
+  $.ajax({
+    url: 'https://randomuser.me/api/?inc=name,gender,location,email,login,phone,picture',
+    dataType: 'json', 
+    success: function(data){
+    console.log(data);
+    document.getElementById('fullname').innerHTML=data.results[0].name.first;
+    document.getElementById('gender').innerHTML=data.results[0].gender;
+    document.getElementById('location').innerHTML=data.results[0].location.street;
+    document.getElementById('email').innerHTML=data.results[0].email;
+    document.getElementById('username').innerHTML=data.results[0].login.username;
+    document.getElementById('phonenumber').innerHTML=data.results[0].phone;
+    document.getElementById('avatar').innerHTML=data.results[0].picture.thumbnail;
+  }
+});
+});
+</script>
+</body>
+</html>

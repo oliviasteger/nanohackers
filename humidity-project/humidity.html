@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>We hack humidity!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<center>
+<h2>Get your humidity levels here!</h2>
+<button>What is the humidity in London?</button>
+<p id="w"></p>
+<script>
+$("button").click(function(){
+	console.log("In the function!!")
+	var city = "London";
+	var key = "a5207858c308d63e6aa27868ae8d5740";
+	$.ajax({
+		url: "http://api.openweathermap.org/data/2.5/weather?q=London&appid=a5207858c308d63e6aa27868ae8d5740&units=imperial",
+    	method: "GET",
+    	success: (response) => {
+      		var humidity = Math.round(response.main.humidity);
+          document.getElementById("w").innerHTML = humidity + "%";
+    	}
+	});
+});
+</script>
+</body>
+</html>

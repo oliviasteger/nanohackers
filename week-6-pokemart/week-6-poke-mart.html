@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <style>
+  body {
+    background-image:   url('http://images.designtrends.com/wp-content/uploads/2015/11/06043811/Pokemon-Background-Designs46.png');
+    color:  #595959;
+  }
+  </style>
+  <title>Pokémart | Get your Pokemons here!</title>
+</head>
+<body>
+<center><h1>Welcome to the PokéMart!<br>
+<span>You have: $</span><span id = 'money'></span><br>
+<span>The store has: $</span><span id='storemoney'></span>
+</h1></center>
+  <br>
+<center>
+<table>
+<tr>
+  <td>
+    <img id='image0' src=""></img><br>
+    <span>Name: </span><span id="name0"></span><br>
+    <span>Quantity: </span><span id="quantity0"></span><br>
+    <span>Price: $</span><span id="price0"></span><br>
+    <button id="buy0">Buy me!</button>
+    <button id="sell0">Sell me!</button>
+  </td>
+  <td>
+    <img id='image1' src=""></img><br>
+    <span>Name: </span><span id="name1"></span><br>
+    <span>Quantity: </span><span id="quantity1"></span><br>
+    <span>Price: $</span><span id="price1"></span><br>
+    <button id="buy1">Buy me!</button>
+    <button id="sell1">Sell me!</button>
+  </td>
+  <td>
+    <img id='image2' src=""></img><br>
+    <span>Name: </span><span id="name2"></span><br>
+    <span>Quantity: </span><span id="quantity2"></span><br>
+    <span>Price: $</span><span id="price2"></span><br>
+    <button id="buy2">Buy me!</button>
+    <button id="sell2">Sell me!</button>
+  </td>
+  <td>
+    <img id='image3' src=""></img><br>
+    <span>Name: </span><span id="name3"></span><br>
+    <span>Quantity: </span><span id="quantity3"></span><br>
+    <span>Price: $</span><span id="price3"></span><br>
+    <button id="buy3">Buy me!</button>
+    <button id="sell3">Sell me!</button>
+  </td>
+  <td>
+    <img id='image4' src=""></img><br>
+    <span>Name: </span><span id="name4"></span><br>
+    <span>Quantity: </span><span id="quantity4"></span><br>
+    <span>Price: $</span><span id="price4"></span><br>
+    <button id="buy4">Buy me!</button>
+    <button id="sell4">Sell me!</button>
+  </td>
+</tr>
+</table>
+<table>
+<tr>
+  <td>
+    <img id='image5' src=""></img><br>
+    <span>Name: </span><span id="name5"></span><br>
+    <span>Quantity: </span><span id="quantity5"></span><br>
+    <span>Price: $</span><span id="price5"></span><br>
+    <button id="buy5">Buy me!</button>
+    <button id="sell5">Sell me!</button>
+  </td>
+  <td>
+    <img id='image6' src=""></img><br>
+    <span>Name: </span><span id="name6"></span><br>
+    <span>Quantity: </span><span id="quantity6"></span><br>
+    <span>Price: $</span><span id="price6"></span><br>
+    <button id="buy6">Buy me!</button>
+    <button id="sell6">Sell me!</button>
+  </td>
+  <td>
+    <img id='image7' src=""></img><br>
+    <span>Name: </span><span id="name7"></span><br>
+    <span>Quantity: </span><span id="quantity7"></span><br>
+    <span>Price: $</span><span id="price7"></span><br>
+    <button id="buy7">Buy me!</button>
+    <button id="sell7">Sell me!</button>
+  </td>
+  <td>
+    <img id='image8' src=""></img><br>
+    <span>Name: </span><span id="name8"></span><br>
+    <span>Quantity: </span><span id="quantity8"></span><br>
+    <span>Price: $</span><span id="price8"></span><br>
+    <button id="buy8">Buy me!</button>
+    <button id="sell8">Sell me!</button>
+  </td>
+  <td>
+    <img id='image9' src=""></img><br>
+    <span>Name: </span><span id="name9"></span><br>
+    <span>Quantity: </span><span id="quantity9"></span><br>
+    <span>Price: $</span><span id="price9"></span><br>
+    <button id="buy9">Buy me!</button>
+    <button id="sell9">Sell me!</button>
+  </td>
+</tr>
+</table>
+<script>
+var i = 0;
+var quantity;
+var quantindex;
+function GetTheStuff(index) {
+  console.log("im in");
+  var money = 5000;
+  var storemoney = 10000;
+  var quantity = Math.floor((Math.random() * 10) + 1) + 10;
+  var quantindex = {name: "quanitity" + index, value: quantity};
+  var num = Math.floor((Math.random() * 749) + 1);
+  $.ajax({
+  url: 'http://pokeapi.co/api/v2/item/' + num + '/',
+  dataType: 'json',
+  success: function(data){
+    console.log(data);
+    document.getElementById('money').innerHTML=money;
+    document.getElementById('storemoney').innerHTML=storemoney;
+    document.getElementById('image' + index).src=data.sprites.default;
+    document.getElementById('name' + index).innerHTML=data.name;
+    document.getElementById('price' + index).innerHTML=data.cost;
+    document.getElementById('quantity' + index).innerHTML=quantity;
+    $("#"+"buy"+index).click(function(){
+      money = money - data.cost;
+      storemoney = storemoney + data.cost;
+      document.getElementById('money').innerHTML=money;
+      document.getElementById('storemoney').innerHTML=storemoney;
+      quantity = quantity - 1;
+      if (quantity <= 0) {
+        quantity = 0;
+      }
+      document.getElementById('quantity' + index).innerHTML=quantity;
+      if (money <= 0) {
+        money = 0;
+        storemoney = storemoney - data.cost;
+      }
+      $("#money").innerHTML=money;
+      document.getElementById('storemoney').innerHTML=storemoney;
+    })
+    $("#"+"sell"+index).click(function(){
+      money = money + data.cost;
+      storemoney = storemoney - data.cost;
+      document.getElementById('money').innerHTML=money;
+      document.getElementById('storemoney').innerHTML=storemoney;
+      quantity = quantity + 1;
+      document.getElementById('quantity' + index).innerHTML=quantity;
+      if (storemoney <= 0) {
+        storemoney = 0;
+        money = money - data.cost;
+      }
+      document.getElementById('money').innerHTML=money;
+      document.getElementById('storemoney').innerHTML=storemoney;
+    })
+  }
+});
+}
+for (i = 0; i < 10; i++) {
+  GetTheStuff(i);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cash Casino | Blackjack</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <style>
+  button {
+  	height: 40px;
+  	width: 120px;
+  	color: #ffffff;
+  	background-color: #660000;
+  	border: none;
+  	font-weight: 100;
+  }
+
+  body { 
+  	background-color: #264d00;
+  }
+
+  span {
+  	color: #ffffff;
+  	font-weight: 100;
+  }
+  </style> 
+</head>
+<body>
+<center><marquee><span style="font-size:40px">Cash Casino | Blackjack</marquee></center>
+<center><button id="draw" style="font-size:28px">DRAW</button>
+<button id="stay" style="font-size:28px">STAY</button>
+<button id="hit" style="font-size:28px">HIT</button></center>
+<br><center><img src="" id="img1"></img>
+<img src="" id="img2"></img>
+<img src="" id="img3"></img>
+<img src="" id="img4"></img>
+<img src="" id="img5"></img></center>
+<script type="text/javascript">
+var deckID;
+var cards;
+var chosen;
+var drawnCards = [];
+function getVal(){
+	 
+}
+$.ajax({
+	url:"http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+	success: function(result){
+		console.log(result);
+		deckID=result.deck_id;
+	}
+});
+$("#draw").click(function(){
+	$.ajax({
+	url:"http://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=2",
+	success: function(result){
+		chosen=2;
+		console.log(result);
+		deckID=result.deck_id;
+		$("#img1").attr("src", result.cards[0].image);
+		drawnCards.push(result.cards[0].value);
+		$("#img2").attr("src", result.cards[1].image);
+		drawnCards.push(result.cards[1].value);
+		console.log(drawnCards);
+	}
+	});
+});
+$("#hit").click(function(){
+	chosen++;
+	$.ajax({
+	url:"http://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1",
+	success: function(result){
+		console.log(result);
+		cards+=chosen;
+		deckID=result.deck_id;
+		$("#img" + chosen).attr("src", result.cards[0].image);
+		drawnCards.push(result.cards[0].value);
+	}
+	});
+});
+</script>
+</body>
+</html>

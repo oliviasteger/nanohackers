@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <title>API Project</title>
+  <link rel="stylesheet" href="styles.css" type="text/css"></link>
+  <link rel="shortcut icon" href="http://bit.ly/1XNJ0tf" type="image/x-icon"/>
+</head>
+<body>
+<button id="picget">Find me a picture!</button><button id="information">What is this site?</button><button onclick="location.href='https://nasa.gov'" target="_blank">NASA</button><br><br>
+<img id="staticimg" src="http://cdn.instructables.com/F7W/NEL0/HDOW3T7D/F7WNEL0HDOW3T7D.MEDIUM.jpg"></img>
+<img id="pic" src=""></img>
+<p id="info"></p>
+<b><p id="meepers"></p></b>
+<p id="infodos"></p>
+<script>
+$("#information").click(function(){
+  $("#staticimg").remove();
+  var whatthisis = "The idea behind this website was to find NASA's picture of the day and a description of the image."
+  var whatisthegeekyness = "I utilized the NASA APOD API to get the HDURL and set it as an image tag src. I got the image description using a data.hdurl get method. The NASA API provides you with a unique key to get data from their daily image site."
+  var geeki = "The Geeky Side for Programmers:";
+  document.getElementById('info').innerHTML=whatthisis;
+  document.getElementById('meepers').innerHTML=geeki;
+  document.getElementById('infodos').innerHTML=whatisthegeekyness;
+});
+$("#picget").click(function(){
+  $("#staticimg").remove();
+  var apikey="NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
+  console.log("in ajax");
+  $.ajax({
+    url: 'https://api.nasa.gov/planetary/apod?api_key='+apikey,
+    dataType: 'json',
+    success: function(data){
+      console.log(data);
+      console.log(data.explanation);
+      $("#info").html(data.explanation);
+      $("#pic").attr("src", data.url);
+    }
+  })
+})
+</script>
+</body>
+</html>
