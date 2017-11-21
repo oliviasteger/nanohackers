@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <title>Inventory</title>
+  <style>
+  body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+   color: black;
+   background-color: #e6ffff;
+  }
+  button {
+    height: 25px;
+    background-color: transparent;
+    border: 1px solid black;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+  }
+  input {
+    height: 15px;
+    background-color: transparent;
+    border: 1px solid black;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+  }
+  </style>
+</head>
+<body>
+<input id="name" type="text" placeholder="Name"></input><br>
+<input id="price" type="text" placeholder="Price"></input>
+<p>Tags:</p>
+<div>
+  <input id="food" type="checkbox" name="field" value="food">
+  <label for="food">Food</label>
+</div>
+<div>
+  <input id="beverage" type="checkbox" name="field" value="beverage">
+  <label for="beverage">Beverage</label>
+</div>
+<div>
+  <input id="tech" type="checkbox" name="field" value="tech">
+  <label for="tech">Technology</label>
+</div>
+<div>
+  <input id="appliance" type="checkbox" name="field" value="appliance">
+  <label for="appliance">Home Appliance</label>
+</div>
+<div>
+  <input id="hygiene" type="checkbox" name="field" value="hygiene">
+  <label for="hygiene">Hygiene</label>
+</div>
+<p>Stores:</p>
+<div>
+  <input id="walmart" type="checkbox" name="field" value="walmart">
+  <label for="walmart">Walmart</label>
+</div>
+<div>
+  <input id="shoprite" type="checkbox" name="field" value="shoprite">
+  <label for="shoprite">ShopRite</label>
+</div>
+<div>
+  <input id="stopandshop" type="checkbox" name="field" value="stopandshop">
+  <label for="stopandshop">Stop & Shop</label>
+</div>
+<br>
+<button id="submit">Add to Inventory</button>
+<script>
+$("#submit").click(function(){
+  console.log("in function");
+  const storeItems = {
+    "food" : [],
+    "beverage" : [],
+    "tech" : [],
+    "appliance" : [],
+    "hygiene" : []
+  }
+  let shroom of Object.(storeItems)
+  console.log("past constant");
+    const Potato = new food();
+    const Pepsi = new beverage();
+    const iPad = new tech();
+    const Microwave = new appliance();
+    const Toothbrush = new hygiene();
+    for(let item in items) {
+        let obj;
+       if (shroom == "food") {
+         obj = newFood(item);
+         console.log("added food item");
+       } else if (shroom == "beverage") {
+         obj = newBeverage(item);
+         console.log("added beverage item");
+       } else if (shroom == "tech"){
+         obj = newTech(item);
+         console.log("added tech item");
+       } else if (shroom == "appliance") {
+         obj = newAppliance(item);
+         console.log("added appliance item");
+       } else {
+         obj = newHygiene(item);
+         console.log("added hygiene item");
+       }
+     }
+  }
+});
+</script>
+</body>
+</html>

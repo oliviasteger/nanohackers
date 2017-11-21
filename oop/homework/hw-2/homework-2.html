@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>homework-2</title>
+<script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+    body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+    }
+    input {
+      border: 1px solid black;
+      background: transparent;
+    }
+    button {
+      border: 1px solid black;
+      background: transparent;
+    }
+</style>
+</head>
+<body>
+<p>Add a movie to the theater!</p>
+<input type="text" id="theaterName" placeholder="Theater Name">
+<button id="submit">Make A New Theater</button>
+<br>
+<input type="text" id="movie" placeholder="Movie Name"></input>
+<input type="text" id="price" placeholder="Movie Price"></input>
+<select id="select">
+</select>
+<button id="submit1">Submit</button>
+<br>
+<br>
+<h2>Theaters Open:</h2>
+<div id="list">
+</div>
+<script>
+CB.CloudApp.init('idftiubngeay', 'c5283c92-367d-42cb-8aa9-0fa6e0ba8292');
+var theaterNames;
+class Movie {
+  constructor(name, price, theaterCBObj){
+    const cloudObject = new CB.CloudObject('Movie');
+    this.cloudObject = cloudObject;
+    this.name = name;
+    cloudObject.set("name", this.name);
+    this.price = price;
+    cloudObject.set("price", this.price);
+    this.theaterCBObj = theaterCBObj;
+    cloudObject.set("theater_id", this.theaterCBObj);
+  }
+  save() {
+    this.cloudObject.save({
+      success: (obj) => {
+        console.log(obj);
+      },
+      error: (err) => {
+        console.log(this.theaterCBObj);
+        console.log("We were not able to save your movie. Sorry!")
+      }
+    });
+  }
+}
+class Theater {
+  constructor(theaterName) {
+    const cloudObject = new CB.CloudObject("Theater");
+    this.cloudObject = cloudObject;
+    this.name = theaterName;
+    cloudObject.set("name", this.name);
+    this.movies = [];
+  }
+  save() {
+    this.cloudObject.save({
+      success: (obj) => {
+        console.log(obj);
+      },
+      error: (err) => {
+        console.log("We were not able to save your movie. Sorry!")
+      }
+    });
+  }
+  addMovie(name, price) {
+    let movie = new Movie(name, price, this.cloudObject);
+    movie.save();
+    this.movies.push(movie);
+  }
+  listAllMovies() {
+    console.log(this.movies);
+    $("body").append("<p></p>");
+    // movies.push("\n \n" + "Name: " + $("#movie").val() + " | Ticket Price: " + $("#price").val() + " \n");
+    // $("#list").text();
+  }
+}
+$("#submit").click(function() {
+  console.log("i have been clicked");
+  var myTheater = new Theater($("#theaterName").val());
+  myTheater.save();
+});
+$("#submit1").click(function() {
+  console.log("heyyy");
+  // Loop though all the theaters and then find exact movie and call theater.addMovie() which would do lines 105 and 106 for you
+  var query = new CB.CloudQuery("Theater");
+  query.find({
+    success: function(list){
+      for (const obj of list) {
+        if (obj.id == $("#select").val()) {
+          var myMovie = new Movie($("#movie").val(), $("#price").val(), obj);
+          myMovie.save();
+        }
+      }
+    }
+  });
+});
+class Application {
+  constructor() {
+    this.theaters = [];
+  }
+  getTheaters(){
+    var query = new CB.CloudQuery("Theater");
+    query.find({
+      success: (list) => {
+        theaterNames = list.map(function (el) {return el.id;});
+        this.theaters = list;
+        this.listTheaters();
+        for (const obj of list) {
+          $("#select").append(`<option value="${obj.id}">${obj.get("name")}</option>`)
+        }
+      },
+      error: (err) => {
+        console.log("Sorry, we were not able to find your theater.");
+      }
+    });
+  }
+  listTheaters() {
+    $("div").prepend("<p>" + theaterNames + "</p>");
+  }
+}
+const app = new Application();
+app.getTheaters();
+app.listTheaters();
+</script>
+</body>
+</html>

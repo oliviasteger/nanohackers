@@ -1,0 +1,99 @@
+<html>
+<head>
+  <title>Linear Search</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('b').hide();
+    });
+  </script>
+</head>
+<body>
+  <h1> It is the year 3016 and humans have suffered a massive plague.</h1>
+  <h3>The remaining humans are scattered all over the earth. Help find new users to help save humanity.</h3>
+  <button id="button">Contact a human.</button>
+  <p id="p"></p>
+  <p id="a"></p>
+  <script>
+    var name;
+    var gender;
+    var contact;
+    var postcode;
+    var pictureurl;
+    var username;
+    var picture;
+    var googleurl;
+    var images = [];
+    var imgnum = 0;
+    class Do {
+      constructor() {
+        
+      }
+      $("#b").click(function() {
+        console.log("I got clicked")
+        console.log(images)
+        if (imgnum > 18) {
+          imgnum = 0;
+        } else {
+          imgnum++;
+        }
+        console.log("<img src='" + images[imgnum] + "'>");
+        document.getElementById("google").innerHTML = "<img src='" + images[imgnum] + "'>";
+      });
+      $("#button").click(function() {
+        imgnum = 0;
+        var sick = Math.random() * 2
+        if (sick > 1) {
+          var message = "I am sick";
+        } else {
+          var message = "I am not sick";
+        }
+        $.ajax({
+          url: 'https://randomuser.me/api/',
+          dataType: 'json',
+          success: function(dataa) {
+            console.log(dataa)
+            name = "My name is " + dataa.results[0].name.first + " " + dataa.results[0].name.last + " and " + message + "."
+            gender = "<br> I am a " + dataa.results[0].gender + "."
+            contact = "<br> You can email me at " + dataa.results[0].email + ". You can call me at " + dataa.results[0].cell + ".<br>"
+            postcode = dataa.results[0].location.postcode
+            console.log(postcode + " postcode")
+            pictureurl = $.ajax({
+              url: 'http://maps.googleapis.com/maps/api/geocode/json?address=' + postcode,
+              method: "GET",
+              success: function(datab) {
+                console.log(datab)
+                var long = datab.results[0].geometry.location.lng;
+                var lat = datab.results[0].geometry.location.lat;
+                console.log([lat, long])
+                var url = "https://api.nasa.gov/planetary/earth/imagery?lon=" + long + "&lat=" + lat + "&date=2014-02-01&cloud_score=True&api_key=px6mbCQT9eudUrxOLmhk8XqgqT6f7z3DHPRsnVJ9"
+                for (i = 0; i < 20; i++) {
+                  images[i] = "https://maps.googleapis.com/maps/api/staticmap?maptype=satellite&center=" + lat + "," + long + "&zoom=" + i + "&size=100x100&key=AIzaSyDJKlymwAXGSBqdl3YayHXgEO7nf3Ewyjk";
+                }
+                console.log(images)
+                console.log([url, googleurl]);
+                $('b').show();
+                $.ajax({
+                  url: url,
+                  method: "GET",
+                  success: function(datac) {
+                    pictureurl = "<img src='" + datac.url + "'>"
+                    console.log(pictureurl + " nasa")
+                    document.getElementById("p").innerHTML = name + gender + contact
+                    document.getElementById("a").innerHTML = username + picture
+                  }
+                })
+                console.log(pictureurl)
+              }
+            })
+            console.log(pictureurl + "          outside")
+            username = "<br><br>My username is " + dataa.results[0].login.username
+            picture = "<br>This is a picture of me: <br> <br><img src='" + dataa.results[0].picture.large + "'>"
+          }
+        });
+      });
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src= "https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+  <script type="text/javascript" src="movie.js"></script>
+  <script type="text/javascript" src="theater.js"></script>
+  <title>homework-3</title>
+</head>
+<body>
+<input id="username" placeholder="User"><br>
+<input id="password" placeholder="Password"><br>
+<button id="login" onclick="check()">Login</button>
+<script>
+function check(){
+  console.log("in le function");
+  var username = $("#username").val();
+  var password = $("#password").val();
+  if (username == "null" && password == "null") {
+    console.log("in the if statement");
+    alert("Hey there, null.");
+    window.location.href = "theaterlist.html";
+  } else {
+    $("#username").disabled = true;
+    $("#password").disabled = true;
+    $("#login").disabled = true;
+  }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Harry Potter Classes</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Bilbo" rel="stylesheet">
+  <style>
+  body {
+   font-family: 'Bilbo', cursive;
+   font-weight: 400;
+   font-size: 25px;
+   background-color:  #003333;
+   color: white;
+ }
+  input {
+    border: 1px solid white;
+    background-color: transparent;
+    height: 21.5px;
+    width: 120px;
+    color: white;
+  }
+  button {
+    border: 1px solid white;
+    background-color: transparent;
+    height: 26px;
+    color: white;
+  }
+  </style>
+</head>
+<body>
+<center>
+  <input id="name3" placeholder="Name" type="text"></input>
+  <input id="founder3" placeholder="Founder" type="text"></input>
+  <input id="location" placeholder="Location" type="text"></input>
+  <input id="speciality" placeholder="Speciality" type="text"></input>
+  <input id="alumni" placeholder="Notable Alumni" type="text"></input>
+  <button id="submit1" onclick="submit1">New School</button>
+<br>
+  <input id="name" placeholder="Name" type="text"></input>
+  <input id="founder" placeholder="Founder" type="text"></input>
+  <input id="colors" placeholder="Colors" type="text"></input>
+  <input id="points" placeholder="Points" type="text"></input>
+  <input id="head" placeholder="Head" type="text"></input>
+  <button id="submit2" onclick="submit2">New House</button>
+<br>
+  <input id="charname" placeholder="Name" type="text"></input>
+  <input id="wand" placeholder="Wand" type="text"></input>
+  <input id="pet" placeholder="Pet's Name" type="text"></input>
+  <input id="house" placeholder="House" type="text"></input>
+  <input id="mother" placeholder="Mother" type="text"></input>
+  <input id="father" placeholder="Father" type="text"></input>
+  <input id="residence" placeholder="Residence" type="text"></input>
+  <input id="job" placeholder="Job" type="text"></input>
+  <button id="submit3" onclick="submit3">New Character</button>
+<h1>Schools</h1>
+<div id="schools"></div>
+<center><h1>Houses</h1>
+<div id="heese"></div>
+<h1>Characters</h1>
+<div id="characters"></div>
+<script>
+  CB.CloudApp.init('ltikaxjcirbf', '54022ce3-f5b7-405f-b331-1c451f842b88');
+  class School {
+    constructor(name, founder, location, speciality, alumni) {
+      const newSchool = new CB.CloudObject('School');
+      this.newSchool = newSchool;
+      this.name = name;
+      newSchool.set("name", this.name);
+      this.founder = founder;
+      newSchool.set("founder", this.founder);
+      this.location = location;
+      newSchool.set("location", this.location);
+      this.speciality = speciality;
+      newSchool.set("speciality", this.speciality);
+      this.alumni = alumni;
+      newSchool.set("alumni", this.alumni);
+    }
+    save() {
+      this.newSchool.save({
+        success: (obj) => {
+          console.log(obj);
+        },
+        error: (err) => {
+          console.log("We were not able to save your house. Sorry!")
+        }
+      });
+    }
+    whatSchool() {
+      var message = "The " + this.name + " House was founded by " + this.founder + ". It is located in " + this.location + ". " + this.name + "'s specialities are " + this.speciality + ". Some notable alumni include " + this.alumni + ".";
+      return message;
+    }
+  }
+  class House {
+    constructor(name, founder, colors, points, head) {
+      const newHouse = new CB.CloudObject('House');
+      this.newHouse = newHouse;
+      this.name = name;
+      newHouse.set("name", this.name);
+      this.founder = founder;
+      newHouse.set("founder", this.founder);
+      this.colors = colors;
+      newHouse.set("colors", this.colors);
+      this.points = points;
+      newHouse.set("points", this.points);
+      this.head = head;
+      newHouse.set("head", this.head);
+    }
+    save() {
+      this.newHouse.save({
+        success: (obj) => {
+          console.log(obj);
+        },
+        error: (err) => {
+          console.log("We were not able to save your house. Sorry!")
+        }
+      });
+    }
+    whatIsThis() {
+      return `The ${this.name} House was founded by ${this.founder}. The house colors are ${this.colors}. The head of the house is ${this.head} and we have ${this.points} points.`;
+    }
+  }
+  class Person {
+    constructor(charname, wand, pet, house, mother, father, residence, job) {
+      const newPerson = new CB.CloudObject('Person');
+      this.newPerson = newPerson;
+      this.charname = charname;
+      newPerson.set("charname", this.charname);
+      this.wand = wand;
+      newPerson.set("wand", this.wand);
+      this.pet = pet;
+      newPerson.set("pet", this.pet);
+      this.house = house;
+      newPerson.set("house", this.house);
+      this.mother = mother;
+      newPerson.set("mother", this.mother);
+      this.father = father;
+      newPerson.set("father", this.mother);
+      this.residence = residence;
+      newPerson.set("residence", this.residence);
+      this.job = job; // if they go to Hogwarts, job = "student"
+      newPerson.set("job", this.job);
+    }
+    save() {
+      this.newPerson.save({
+        success: (obj) => {
+          console.log(obj);
+        },
+        error: (err) => {
+          console.log("We were not able to save your person. Sorry!")
+        }
+      });
+    }
+    whoAmI() {
+      return `My name is ${this.charname}, and I am in ${this.house} House. I have a pet, ${this.pet}. My wand is ${this.wand}. You may know my parents, ${this.mother}, and ${this.father}. I live at ${this.residence}. I am an ${this.job}.`;
+    }
+  }
+  var schools = [];
+  var houses = [];
+  var people = [];
+  $("#submit1").click(function() {
+    var school = new School($("#name3").val(), $("#founder3").val(), $("#location").val(), $("#speciality").val(), $("#alumni").val());
+    school.save();
+    schools.push(school.whatSchool() + "<br>");
+    $("#schools").html(schools);
+  });
+  $("#submit2").click(function() {
+    var house = new House($("#name").val(), $("#founder").val(), $("#colors").val(), $("#points").val(), $("#head").val()); // in here, after input is done, start putting in jquery gets instead of strings: $("#name").val();
+    house.save()
+    houses.push(house.whatIsThis() + "<br>");
+    $("#heese").html(houses);
+  });
+  $("#submit3").click(function() {
+    var person = new Person($("#charname").val(), $("#wand").val(), $("#pet").val(), $("#house").val(), $("#mother").val(), $("#father").val(), $("#residence").val(), $("#job").val());
+    person.save();
+    people.push(person.whoAmI() + "<br>");
+    $("#characters").html(people);
+  });
+</script>
+</body>
+</html>
