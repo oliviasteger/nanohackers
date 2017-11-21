@@ -1,0 +1,31 @@
+<center>
+<br>
+<h1>Edit Animal</h1>
+
+<ul class="error">
+  <% for message in @animal.errors.full_messages %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<br>
+<%= form_for(@animal) do |form| %>
+  <p>
+    <%= form.label(:name) %><br>
+    <%= form.text_field(:name) %><br>
+  </p>
+  <p>
+    <%= form.label(:kind) %><br>
+    <%= form.text_field(:kind) %><br>
+  </p>
+  <p>
+    <%= form.label(:age) %><br>
+    <%= form.text_field(:age) %><br>
+  </p>
+  <p>
+  <%= form.label(:food) %><br>
+  <%= form.select(:food, "<option>treats</option><option>fish</option><option>steak</option><option>carrots</option><option>roadkill</option>".html_safe) %><br>
+</p>
+  <%= form.submit("Update Animal") %>
+<% end %>
+<br>
+<a href="/"><button>Home</button></a>

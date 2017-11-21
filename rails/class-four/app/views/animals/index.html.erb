@@ -1,0 +1,16 @@
+<center>
+<h1>All Animals</h1>
+<br>
+<a href="/animals/new"><button>New Animal</button></a>
+<br><br>
+<a href="/clear"><button>Clear All Items</button></a> <!-- GOTTA DO THIS -->
+<br><br>
+<table>
+  <% for animal in @animals %>
+    <tr><td>
+      <a href="/animals/<%= animal.id %>">
+         ⏤ <%= animal.name %>
+      </a>
+    </td></tr>
+  <% end %>
+</ul>
