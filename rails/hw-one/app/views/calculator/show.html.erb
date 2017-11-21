@@ -1,0 +1,23 @@
+<center>
+  <br><br>
+<form method="post" action="/add" id="calcbox">
+  <p><%= @sum %></p>
+  <input class="input" name="x" size="3"> + <input class="input" name="y" size="3"><br>
+  <input class="button" type="submit" value="Add">
+</form>
+<form method="post" action="/subtract" id="calcbox">
+  <p><%= @subtraction %></p>
+  <input class="input" name="x" size="3"> - <input class="input" name="y" size="3"><br>
+  <input class="button" type="submit" value="Subtract">
+</form>
+<form method="post" action="/multiply" id="calcbox">
+  <p><%= @multiplication %></p>
+  <input class="input" name="x" size="3"> x <input class="input" name="y" size="3"><br>
+  <input class="button" type="submit" value="Multiply">
+</form>
+<form method="post" action="/divide" id="calcbox">
+  <p><%= @division %></p>
+  <input class="input" name="x" size="3"> / <input class="input" name="y" size="3"><br>
+  <input class="button" type="submit" value="Divide">
+  <p>You are now on /calculate. You must return to <b>/calculator</b> to make another calculation.</p>
+</form>

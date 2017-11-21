@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        background-color: #ffffff;
+      }
+      #calcbox {
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        width: 300px;
+        padding: 15px;
+        color: orange;
+      }
+      .input {
+        border-radius: 5px;
+        border: 1px solid orange;
+        background-color: #f5f5f5;
+        padding: 2px;
+        margin-bottom: 10px;
+      }
+      .button {
+        border-radius: 5px;
+        background-color: orange;
+        border: 1px solid orange;
+        color: #f5f5f5;
+      }
+      p {
+        color: orange;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

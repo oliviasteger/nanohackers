@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>gallery</title>
+    <style>
+      @font-face {
+        font-family: "Work Sans Regular";
+        src: url(/assets/fonts/WorkSans-Regular.otf) format("truetype");
+      }
+      @font-face {
+        font-family: "Work Sans Bold";
+        src: url(/assets/fonts/WorkSans-Bold.otf) format("truetype");
+      }
+      body {
+        padding-top: 10%;
+        padding-left, padding-right: 20%;
+        margin-bottom: 300px;
+      }
+      #container {
+        margin: 0px;
+        padding: 0px;
+        height: 80%;
+        width: 60%;
+      }
+      img {
+        width: 300px;
+        padding: 0px;
+        margin-top: 0px;
+      }
+      img:hover {
+        opacity: 0.5;
+      }
+      p {
+        margin-bottom: 200px;
+        font-size: 9px;
+        text-align: right;
+        margin-right: 31%;
+        font-family: "Work Sans Regular";
+      }
+      h1 {
+        font-family: "Work Sans Bold";
+      }
+    </style>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
