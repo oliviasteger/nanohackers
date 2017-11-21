@@ -1,0 +1,16 @@
+<center>
+<h1><%= @animal.name %></h1>
+<p>
+  <%= @animal.name %> is a <%= @animal.age %>-year-old <%= @animal.kind %>. <%= @animal.name %> enjoys <%= @animal.food %>.
+</p>
+<br><br>
+<h2>Visitors: </h2>
+<ul>
+<% for visit in @animal.visits %>
+  <li><%= visit.visitor %></li>
+<% end %>
+</ul>
+
+<br>
+<a href="/"><button>Home</button></a><br><br>
+<%= link_to 'Edit', [:edit, @animal], class:"editLink" %>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animals</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+      }
+      h1, h2 {
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 20px;
+      }
+      .button, input {
+        border-radius: 2px;
+        border: 1px solid  #ff5c33;
+        padding: 5px;
+      }
+      input[type="submit" i] {
+        color: white;
+        background-color:  #ff5c33;
+        text-transform: uppercase;
+        font-weight: 900;
+        -moz-box-shadow: inset 0 1px 0 0 #ff5c33, 0 1px 2px 0 #b3b3b3;
+        -webkit-box-shadow: inset 0 1px 0 0 #ff5c33, 0 1px 2px 0 #b3b3b3;
+      }
+      label {
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+      button, .editLink {
+        border-radius: 2px;
+        border: 1px solid  #ff5c33;
+        padding: 5px;
+        color: white;
+        background-color:  #ff5c33;
+        text-transform: uppercase;
+        font-weight: 900;
+        -moz-box-shadow: inset 0 1px 0 0 #ff5c33, 0 1px 2px 0 #b3b3b3;
+        -webkit-box-shadow: inset 0 1px 0 0 #ff5c33, 0 1px 2px 0 #b3b3b3;
+      }
+      button:hover, .editLink:hover {
+        background-color: #ff481a;
+        border: 1px solid  #ff481a;
+        -moz-box-shadow: 0;
+        -webkit-box-shadow: 0;
+      }
+      input[type="submit" i]:hover {
+        background-color: #ff481a;
+        border: 1px solid  #ff481a;
+        -moz-box-shadow: 0;
+        -webkit-box-shadow: 0;
+      }
+      .error {
+        color:  #ff5c33;
+      }
+      ul {
+        width: 10%;
+        list-style-type: circle;
+      }
+      a {
+        text-decoration: none;
+        color: #ff5c33;
+      }
+      select {
+        border-radius: 2px;
+        border: 1px solid  #ff5c33;
+        padding: 5px;
+        color: #ff5c33;
+        background-color:  white;
+        width: 138px;
+        height: 25px;
+      }
+      a:hover {
+        text-shadow: 0 1px 1px #ff5c33;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

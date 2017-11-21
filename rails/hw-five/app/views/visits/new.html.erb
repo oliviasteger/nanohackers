@@ -1,0 +1,23 @@
+<center>
+<br>
+<h1>New Visit</h1>
+
+<ul class="error">
+  <% for message in @visit.errors.full_messages %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<br>
+<%= form_for(@visit) do |form| %>
+  <p>
+    <%= form.label(:visitor) %><br>
+    <%= form.text_field(:visitor) %><br>
+  </p>
+  <p>
+    <%= form.label(:animal_id) %><br>
+    <%= form.text_field(:animal_id) %><br>
+  </p>
+  <%= form.submit("Create Visit") %>
+<% end %>
+<br>
+<a href="http://localhost:3000/"><button>Home</button></a>
