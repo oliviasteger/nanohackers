@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <title>JS Bin</title>
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+    button {
+      font-family: 'Lato', sans-serif;
+      border: 1px solid black;
+      background-color: transparent;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<center><button id="button">Display Sale Items</button>
+<h2>Apartment Sale</h2>
+<div id="a_sale"></div>
+<h2>Music & Tech Sale</h2>
+<div id="m_sale"></div>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script>
+  $("#button").click(function(){
+    $.ajax({url: "https://raw.githubusercontent.com/oliviasteger/scripting/master/homework/hw-3/apartmentsale.json", success: function(data){
+      doc = data.slice(25, -12);
+      doc = doc.replace(/,/g , "<br>");
+      document.getElementById("a_sale").innerHTML = doc;
+      
+      $('a_sale').each(function () {
+        $('a_sale').html(
+        $('a_sale').html().replace(',', ':<br/>')
+    );
+});
+    }});
+        $.ajax({url: "https://raw.githubusercontent.com/oliviasteger/scripting/master/homework/hw-3/musicsale.json", success: function(result){
+      doc1 = result.slice(25, -12);
+      doc1 = doc1.replace(/,/g , "<br>");
+      document.getElementById("m_sale").innerHTML = doc1;
+      
+      $('m_sale').each(function () {
+        $('m_sale').html(
+        $('m_sale').html().replace(',', ':<br/>')
+    );
+});
+    }});
+});
+</script>
+</body>
+</html>
