@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Playfair+Display:900" rel="stylesheet">
+    <title>profiles</title>
+    <style>
+
+      body, html {
+        background-color: #FFFFFF;
+        height: 100%;
+        padding: 0px;
+        width: 100%;
+        margin: 0px;
+        color: #4157B2;
+        font-family: 'Open Sans', sans-serif;
+      }
+      h1 {
+        font-family: 'Playfair Display', serif;
+        text-decoration: bold;
+        color: #4157B2;
+        margin-bottom: 0px;
+      }
+      input {
+        border: 1px solid #3CCFCF;
+        background-color: #F0F0F0;
+        border-radius: 2px;
+        height: 30px;
+        padding-left: 5px;
+        color: #4157B2;
+        font-size: 13px;
+        text-transform: lowercase;
+      }
+      button {
+        border: 1px solid #3CCFCF;
+        background-color: #F0F0F0;
+        border-radius: 2px;
+        height: 30px;
+        padding-left: 5px;
+        color: #4157B2;
+        font-size: 13px;
+        text-transform: lowercase;
+      }
+      .section {
+        background-color: #F0F0F0;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        padding: 10px;
+        align-content: center;
+      }
+      p {
+        text-transform: lowercase;
+      }
+      span {
+        font-size: 11px;
+        margin-top: 0px;
+
+      }
+    </style>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

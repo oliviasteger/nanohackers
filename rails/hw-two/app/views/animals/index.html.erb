@@ -1,0 +1,17 @@
+<div class="section">
+<center>
+<h1>create a profile</h1>
+<p>to make and view a profile, click on the button below.</p>
+<a href="http://localhost:3000/animals/new"><button>new profile</button></a>
+
+<h1>all animals</h1>
+  <ul>
+    <% for animal in @animals %>
+      <li>
+        <a href="/animals/<%=animal.id%>">
+          <%= animal.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

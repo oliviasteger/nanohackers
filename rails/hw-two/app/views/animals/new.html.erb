@@ -1,0 +1,31 @@
+<div class="section">
+<center>
+  <h1>create a profile</h1>
+<p>
+  <% for message in @animal.errors.full_messages %>
+  <p><%= message %></p>
+  <% end %>
+</p>
+
+<%= form_for(@animal)  do |form| %>
+  <p>
+    <%= form.label(:name) %>:<br><br>
+    <%= form.text_field(:name) %>
+  </p>
+  <p>
+    <%= form.label(:age) %>:<br><br>
+    <%= form.text_field(:age) %>
+  </p>
+  <p>
+    <%= form.label(:kind) %>:<br><br>
+    <%= form.text_field(:kind) %>
+  </p>
+  <select name="favorite">
+    <option value="everything">Select Your Pet's Favorite Food</option>
+    <option value="carrots">Carrots</option>
+    <option value="bacon">Bacon</option>
+    <option value="steak">Steak</option>
+  </select><br><br>
+  <%= form.submit("create profile") %>
+<% end %>
+</div>
