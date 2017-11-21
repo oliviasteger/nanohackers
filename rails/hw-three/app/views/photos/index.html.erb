@@ -1,0 +1,12 @@
+<center>
+  <br><br>
+<div id="titlebar"><a href="http://localhost:3000/">gallery</a>&nbsp &nbsp &nbsp<a href="http://localhost:3000/photos/new">upload</a></div>
+<br><br>
+<table>
+  <% for photo in @photos %>
+    <tr><td>
+      <div class="photoContainer"><%= link_to image_tag(photo.url, class: 'image'), photo %></div>
+         <p class="caption"><%= photo.user %> took this photo.</p>
+    </td></tr>
+  <% end %>
+</table>

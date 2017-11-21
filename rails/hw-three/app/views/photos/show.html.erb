@@ -1,0 +1,12 @@
+<center>
+  <br><br>
+  <div id="titlebar"><a href="http://localhost:3000/">gallery</a>&nbsp &nbsp &nbsp<a href="http://localhost:3000/photos/new">upload</a></div>
+  <br><br>
+
+  <div class="photoContainer"><%= image_tag (@photo.url), :class => 'image' %>
+  <p class="caption"><%= @photo.user %> took this photo.</p>
+  <%= link_to('delete', destroy_photos_path) %> / <%= link_to('next', Photo.where("id > ?", @photo.id).first) %></div>
+  <%# link_to("next", Photo.find(@photo.id+1)) %>
+<br><br>
+
+<br>

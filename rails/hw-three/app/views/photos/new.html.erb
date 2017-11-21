@@ -1,0 +1,23 @@
+<center>
+  <br><br>
+<div id="titlebar"><a href="http://localhost:3000/">gallery</a>&nbsp &nbsp &nbsp<a href="http://localhost:3000/photos/new">upload</a></div>
+<br><br>
+
+<ul class="error">
+  <% for message in @photo.errors.full_messages %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<br>
+<%= form_for(@photo) do |form| %>
+  <p>
+    <%= form.label(:url) %>:<br>
+    <%= form.text_field(:url) %><br>
+  </p>
+  <p>
+    <%= form.label(:user) %>:<br>
+    <%= form.text_field(:user) %><br>
+  </p>
+  <%= form.submit("upload") %>
+<% end %>
+<br>

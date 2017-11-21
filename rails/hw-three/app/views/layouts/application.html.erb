@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>gallery</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+    body {
+      font-size: 11px;
+      text-transform: lowercase;
+      font-family: 'Poppins', sans-serif;
+    }
+    .image {
+      margin-top: 100px;
+      width: 400px;
+    }
+    .caption {
+      text-align: right;
+    }
+    .photoContainer {
+      width: 400px;
+      text-align: right;
+    }
+    #titlebar {
+      margin-top: 50px;
+      background-color: #F5F5F5;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      width: 400px;
+    }
+    a {
+      color: black;
+      padding: none;
+    }
+    a:hover {
+      opacity: 0.3;
+    }
+    form {
+      width: 400px;
+      text-align: center;
+      font-size: 11px;
+    }
+    input {
+      border: 2px solid #F5F5F5;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    input[type="submit" i] {
+      font-family: 'Poppins', sans-serif;
+      background-color: #F5F5F5;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    input[type="submit" i]:hover {
+      background-color: #FFFFFF;
+    }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
