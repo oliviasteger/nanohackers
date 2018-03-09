@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  belongs_to :user
-  has_many :comments, dependent: :destroy
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
