@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  has_many :posts, dependent: :destroy
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
