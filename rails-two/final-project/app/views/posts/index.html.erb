@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<%= link_to 'New Post', new_post_path %>
+<br>
+
+  <% @posts.each do |post| %>
+  <br>
+    <table>
+      <tr>
+        <td class="postTitle"><%= post.title %></td>
+      </tr>
+      <tr style="margin-bottom: 20px;">
+        <td class="postContent"><%= post.content %></td>
+      </tr>
+      <!-- <tr>
+        <td class="postUser"><br>This post was made by User <%= post.user %> in <%= post.area %>.<br><br></td>
+      </tr> -->
+      <tr>
+        <td><br><%= link_to 'Show', post %> &nbsp; <%= link_to 'Edit', edit_post_path(post) %> &nbsp; <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </table>
+    <br>
+  <% end %>
+
+<br>
