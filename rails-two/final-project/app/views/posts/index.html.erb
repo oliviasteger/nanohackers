@@ -14,14 +14,14 @@
         <td class="postTitle"><%= post.title %></td>
       </tr>
       <tr>
-        <td class="postUser"><br>This post was made by User <%= post.user %> in <%= post.area %>.<br><br></td>
+        <td class="postUser"><br>This post was made by <a style="background-color: transparent; padding: 0px; font-family: 'Open Sans', sans-serif; font-size: 13px; border-bottom: 2px solid #ead1dc; " href="/users/<%= post.user %>" >User <%= post.user %></a> in <%= post.area %>.<br><br></td>
       </tr>
       <tr style="margin-bottom: 20px;">
         <td class="postContent"><%= post.content %></td>
       </tr>
       <tr>
           <td>
-            <center><br><%= link_to 'Show', post %> &nbsp; <%= link_to 'Edit', edit_post_path(post) %> &nbsp; <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <center><br><%= link_to 'Show', post %> &nbsp; <%= link_to 'Edit', edit_post_path(post) %> &nbsp; <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
       </tr>
     </table>
