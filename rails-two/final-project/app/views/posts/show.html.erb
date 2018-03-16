@@ -22,3 +22,19 @@
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+
+<% @post.comment.each do |comment| %>
+  <table id="comment">
+    <tr>
+      <td class="postUser"><br>This comment was made by <a style="background-color: transparent; padding: 0px; font-family: 'Open Sans', sans-serif; font-size: 13px; border-bottom: 2px solid #ead1dc; " href="/users/<%= comment.user %>" >User <%= comment.user %></a>.<br><br></td>
+    </tr>
+    <tr style="margin-bottom: 20px;">
+      <td class="postContent"><%= comment.content %></td>
+    </tr>
+    <tr>
+        <td>
+          <center><br><%= link_to 'Show', comment %> &nbsp; <%= link_to 'Edit', edit_comment_path(comment) %> &nbsp; <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+    </tr>
+  </table>
+<% end %>
