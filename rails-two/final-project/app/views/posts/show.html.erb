@@ -2,7 +2,7 @@
 
 <center>
   <br><br><br>
-  <%= link_to 'Home', new_post_path %>
+  <%= link_to 'Home', root_path %>
   <br><br>
 </center>
 <br>
@@ -41,7 +41,7 @@
     </tr>
     <tr>
         <td>
-          <center><br><%= link_to 'Show', comment %> &nbsp; <%= link_to 'Edit', edit_comment_path(comment) %> &nbsp; <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <center><br><%= link_to 'Edit', edit_comment_path(comment) %> &nbsp; <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
     </tr>
   </table>
