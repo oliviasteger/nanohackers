@@ -1,30 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<center>
+  <br><br><br>
+  <%= link_to 'Home', new_post_path %>
+  <br><br>
+</center>
+<br>
+<br>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @post.area %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<table>
+  <tr>
+    <td class="postTitle"><%= @post.title %></td>
+  </tr>
+  <tr>
+    <td class="postUser"><br>This post was made by <a style="background-color: transparent; padding: 0px; font-family: 'Open Sans', sans-serif; font-size: 13px; border-bottom: 2px solid #ead1dc; " href="/users/<%= @post.user %>" >User <%= @post.user %></a> in <%= @post.area %>.<br><br></td>
+  </tr>
+  <tr style="margin-bottom: 20px;">
+    <td class="postContent"><%= @post.content %></td>
+  </tr>
+  <tr>
+      <td>
+        <center><%= link_to 'Edit', edit_post_path(@post) %>
+          <%= link_to 'Back', posts_path %>
+          <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+  </tr>
+</table>
+<br><br>
 
 <% @post.comment.each do |comment| %>
   <table id="comment">
+    <tr>
+      <td class="postTitle">Comment</td>
+    </tr>
     <tr>
       <td class="postUser"><br>This comment was made by <a style="background-color: transparent; padding: 0px; font-family: 'Open Sans', sans-serif; font-size: 13px; border-bottom: 2px solid #ead1dc; " href="/users/<%= comment.user %>" >User <%= comment.user %></a>.<br><br></td>
     </tr>
