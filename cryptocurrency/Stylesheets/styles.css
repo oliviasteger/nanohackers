@@ -1,0 +1,246 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fff;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  width: 80%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.header {
+  width: 111.6%;
+  height: 70px;
+  padding: 10px;
+  padding-top: 35px;
+  padding-left: 150px;
+  margin: 0px;
+  /* background-color: #fffdb7;
+  box-shadow: 5px 8px 18px #d9d9d9; */
+}
+
+.logo {
+  font-size: 30px;
+  background-color: #aef4a4;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 500px;
+}
+
+.link {
+  margin-right: 140px;
+  color: #b8dff0;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+}
+.last {
+  margin-right: 0px;
+}
+
+.image {
+  padding-left: 100px;
+  width: 500px;
+}
+
+.left, .right {
+  width: 400px;
+}
+
+.text {
+  padding-top: 150px;
+  padding-left: 50px;
+}
+
+.block {
+  height: 650px;
+}
+
+.description {
+  line-height: 30px;
+  width: 550px;
+}
+
+.heading {
+  color: #e36488;
+  font-weight: 900;
+}
+
+.block {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.footer {
+  height: 200px;
+  background-color: #e36488;
+  width: 125%;
+  color: #fffdb7;
+}
+
+.flink {
+  color: #fffdb7;
+  text-decoration: none;
+}
+
+.modem {
+  align-items: center;
+  margin-top: 100px;
+  margin-left: 300px;
+  width: 600px;
+  height: 300px;
+  padding: 0px;
+}
+
+input {
+  width: 250px;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid #aef4a4;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  margin-bottom: 0px;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+}
+select {
+  width: 275px;
+  height: 50px;
+  border: 2px solid #aef4a4;
+  background-color: white;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  margin: 0px;
+}
+
+select:focus {
+  background-color: #b8dff0;
+}
+
+input[type=text]:focus {
+    background-color: #b8dff0;
+}
+
+input[type=password]:focus {
+    background-color: #b8dff0;
+}
+
+tr {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 50px;
+}
+
+#submit {
+  width: 275px;
+  height: 50px;
+  border: 2px solid #aef4a4;
+  background-color: #b8dff0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#submit:hover {
+  background-color: #aef4a4;
+}
+
+#container {
+  margin-top: 80px;
+  width: 98%;
+  margin-left: 12.5%;
+  height: 300px;
+}
+
+.currency {
+  vertical-align: top;
+  background-color: #b8dff0;
+  border: 20 solid #fff;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 500px;
+  height: 50px;
+  color: white;
+  border-spacing: 10px;
+  margin-bottom: 20px;
+}
+
+.currencyHolder {
+    margin: 10px;
+}
+
+.currencyTitle {
+  background-color: #aef4a4;
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-weight: bold;
+}
+
+.currencyCirculation {
+  margin-left: 20%;
+  color: white;
+  font-weight: bold;
+}
+
+.currencyMarket {
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: #aef4a4;
+  font-weight: bold;
+  background-color: white;
+}
+
+.currencyValue {
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: #b8dff0;
+  font-weight: bold;
+  background-color: white;
+}
+
+.spacer {
+  height: 10px;
+}
+
+.tdspacer {
+  width: 10px;
+}
+
+.currencyInfo {
+  line-height: 33px;
+  font-weight: bold;
+}
+
+.currencyInfoLink {
+  color: #fff;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 3px solid #aef4a4;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  text-decoration: none;
+}
+
+.currencyInfoLink:hover {
+  color: white;
+  background-color: #aef4a4;
+}

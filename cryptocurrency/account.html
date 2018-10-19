@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Block Barter</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
+  <link href="stylesheets/styles.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON("Scripts/data.json", function(json) {
+          for (var i = 0; i < json.length; i++) {
+            
+          }
+      });
+    })
+  </script>
+  <script src="scripts/script.js"></script>
+</head>
+<body>
+  <!-- Creating header for links & name -->
+  <div class="header">
+    <span class="links">
+      <a class="logo" href="index.html">Block Barter</a>
+      <a class="link" href="register.html">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <a class="link" href="login.html">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <!-- Anchor link -->
+      <a id="aboutLink" class="link last" href="#about">Hello, Userna!</a>
+    </span>
+  </div>
+
+  <table class="block">
+    <tr>
+      <td class="left text">
+        <h1 class="heading">Getting started</h1>
+        <p class="description">
+          Cryptocurrency is based on blockchain technology. Blockchain is
+          literally a chain of blocks, but what makes it revolutionary is that
+          each block of data only has one owner. Only allowing a block to have
+          one owner makes transactions easier and monetary piracy harder. The
+          blockchain itself is public, and stored on more than one device,
+          making it hard to mess with the data. Cryptocurrency is gained when
+          your computer's processing unit solves a complex math problem,
+          and then adds a block to the chain.
+        </p>
+      </td>
+      <td class="right" style="padding-left: 100px; padding-top: 140px;">
+        <h1 class="heading">What's next</h1>
+        <p class="description">
+          The currencies below are the most accessible for the type and price
+          range you selected when you logged in. Under each currency is a
+          simple set of steps you can follow to get started mining. In each header
+          is the name of the currency, its market value over that past 24 hours,
+          how much it is valued at in USD, and how many can be mined. The tutorial
+          below shows you the cheapest way to mine for the budget that you provided
+          at registration. Scroll down to get started mining!
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <table id="container">
+    <tr class="currencyHolder">
+      <td class="currency">
+        <br>
+        <span class="currencyTitle">Bitcoin</span>
+        <span class="currencyMarket">+1.22 NASDAQ</span>
+        <span class="currencyValue">$6,463.27</span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;
+        <span class="currencyCirculation">17M</span>
+        <br><br>
+        <p class="currencyInfo">To mine Bitcoin, most beginners use the
+        <a class="currencyInfoLink" target="blank" href="https://www.parallelminer.com/product/bitmain-antminer-s7-batch-8-stable-at-4-73ths/">Bitmain Antminer S7,</a> which is configured
+        with the <a class="currencyInfoLink" target="blank" href="https://www.parallelminer.com/product/lite-on-bitmain-antminer-dr3-power-supply-2200-watt-2x1100-110-240v-asic-miner-psu-80-gold-92-efficiency/">Lite-On Bitmain Antminer D3 Power Supply.</a>
+        This can be configured on your computer, and you'll be able to start mining right away.
+        <a class="currencyInfoLink" target="blank" href="https://www.cryptocompare.com/mining/calculator/btc?HashingPower=4730&HashingUnit=GH%2Fs&PowerConsumption=1293&CostPerkWh=0.12&MiningPoolFee=1">Want to calculate profit?</a></p>
+      </td>
+      <td class="tdspacer"></td>
+      <td class="currency">
+        <br>
+        <span class="currencyTitle">Bytecoin</span>
+        <span class="currencyMarket">-1.44 NASDAQ</span>
+        <span class="currencyValue">$0.001</span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+        <span class="currencyCirculation">184B</span>
+        <br><br>
+        <p class="currencyInfo">Bytecoin is completely free to mine, excluding power
+        needed to charge your computer. Most people just download <a class="currencyInfoLink" target="blank" href="https://github.com/fireice-uk/xmr-stak/releases">XMR Stak</a> and follow <a class="currencyInfoLink" target="blank" href="https://blockonomi.com/how-to-mine-bytecoin/">this
+        tutorial</a> to get started.</p>
+      </td>
+    </tr>
+    <tr class="spacer"></tr>
+    <tr class="currencyHolder">
+      <td class="currency">
+        <br>
+        <span class="currencyTitle">Ethereum</span>
+        <span class="currencyMarket">+0.40 NASDAQ</span>
+        <span class="currencyValue">$203.84</span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;
+        <span class="currencyCirculation">102M</span>
+      </td>
+      <td class="tdspacer"></td>
+      <td class="currency">
+        <br>
+        <span class="currencyTitle">Dogecoin</span>
+        <span class="currencyMarket">+3.67 NASDAQ</span>
+        <span class="currencyValue">$0.004</span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
+        <span class="currencyCirculation">116B</span>
+        <p >
+      </td>
+    </tr>
+  </table>
+
+  </body>
+  </html>
