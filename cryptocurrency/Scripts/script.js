@@ -84,5 +84,4 @@ function login() {
   }).catch(function(error) {
       alert("There is no account under this username!");
   });
-  window.location.href = "account.html";
 }
