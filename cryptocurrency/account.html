@@ -7,16 +7,42 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
   <link href="stylesheets/styles.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="scripts/script.js"></script>
   <script>
     $(document).ready(function() {
-      $.getJSON("Scripts/data.json", function(json) {
-          for (var i = 0; i < json.length; i++) {
-            
+      $.getJSON("https://raw.githubusercontent.com/oliviasteger/nanohackers/master/cryptocurrency/Scripts/data.json", function(json) {
+          var q = 0;
+          var stocks;
+          stocks = ["Ethereum", "Bytecoin", "Monero", "Zcash"];
+          for (var i = 1; i < 5; i++) {
+            for (var j = 0; j < json.length; j++) {
+              if (json[j].name == stocks[q]) {
+                document.getElementById(i).children[1].innerHTML = json[q].name;
+                document.getElementById(i).children[2].innerHTML = json[q].change + " NASDAQ";
+                document.getElementById(i).children[3].innerHTML = json[q].price;
+                var supply = 0;
+                supply = json[q].supply;
+                if (supply < 1000) {
+                  supply = json[q].supply.toString().split(",")[0];
+                } else if (supply > 999 && supply < 1000000) {
+                  supply = json[q].supply.toString().split(",")[0] + "K";
+                } else if (supply > 999999 && supply < 1000000000) {
+                  supply = json[q].supply.toString().split(",")[0] + "M";
+                } else {
+                  supply = json[q].supply.toString().split(",")[0] + "B";
+                }
+                document.getElementById(i).children[4].innerHTML = supply;
+              }
+            }
+            q++;
           }
       });
     })
   </script>
-  <script src="scripts/script.js"></script>
 </head>
 <body>
   <!-- Creating header for links & name -->
@@ -26,7 +52,6 @@
       <a class="link" href="register.html">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
       <a class="link" href="login.html">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
       <!-- Anchor link -->
-      <a id="aboutLink" class="link last" href="#about">Hello, Userna!</a>
     </span>
   </div>
 
@@ -62,13 +87,13 @@
 
   <table id="container">
     <tr class="currencyHolder">
-      <td class="currency">
+      <td class="currency" id="1">
         <br>
-        <span class="currencyTitle">Bitcoin</span>
-        <span class="currencyMarket">+1.22 NASDAQ</span>
-        <span class="currencyValue">$6,463.27</span>
+        <span class="currencyTitle"></span>
+        <span class="currencyMarket"></span>
+        <span class="currencyValue"></span>
         &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;
-        <span class="currencyCirculation">17M</span>
+        <span class="currencyCirculation"></span>
         <br><br>
         <p class="currencyInfo">To mine Bitcoin, most beginners use the
         <a class="currencyInfoLink" target="blank" href="https://www.parallelminer.com/product/bitmain-antminer-s7-batch-8-stable-at-4-73ths/">Bitmain Antminer S7,</a> which is configured
@@ -77,41 +102,65 @@
         <a class="currencyInfoLink" target="blank" href="https://www.cryptocompare.com/mining/calculator/btc?HashingPower=4730&HashingUnit=GH%2Fs&PowerConsumption=1293&CostPerkWh=0.12&MiningPoolFee=1">Want to calculate profit?</a></p>
       </td>
       <td class="tdspacer"></td>
-      <td class="currency">
+      <td class="currency" id="2">
         <br>
-        <span class="currencyTitle">Bytecoin</span>
-        <span class="currencyMarket">-1.44 NASDAQ</span>
-        <span class="currencyValue">$0.001</span>
-        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
-        <span class="currencyCirculation">184B</span>
+        <span class="currencyTitle"></span>
+        <span class="currencyMarket"></span>
+        <span class="currencyValue"></span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <span class="currencyCirculation"></span>
         <br><br>
-        <p class="currencyInfo">Bytecoin is completely free to mine, excluding power
-        needed to charge your computer. Most people just download <a class="currencyInfoLink" target="blank" href="https://github.com/fireice-uk/xmr-stak/releases">XMR Stak</a> and follow <a class="currencyInfoLink" target="blank" href="https://blockonomi.com/how-to-mine-bytecoin/">this
-        tutorial</a> to get started.</p>
+        <p class="currencyInfo">Ethereum is the second most popular cryptocurrency, surpassed by Bitcoin.
+        You can use <a class="currencyInfoLink" target="blank" href="https://minergate.com/downloads/gui">MinerGate GUI Miner</a> to mine Ethereum on your PC, which is easy for beginners.
+      All you need to do is create an account and log in on the desktop application.</p>
       </td>
     </tr>
     <tr class="spacer"></tr>
     <tr class="currencyHolder">
-      <td class="currency">
+      <td class="currency" id="3">
         <br>
-        <span class="currencyTitle">Ethereum</span>
-        <span class="currencyMarket">+0.40 NASDAQ</span>
-        <span class="currencyValue">$203.84</span>
-        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;
-        <span class="currencyCirculation">102M</span>
+        <span class="currencyTitle"></span>
+        <span class="currencyMarket"></span>
+        <span class="currencyValue"></span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <span class="currencyCirculation"></span>
+        <br><br>
+        <p class="currencyInfo">Stellar is the second most popular cryptocurrency, surpassed by Bitcoin.
+        You can use <a class="currencyInfoLink" target="blank" href="https://minergate.com/downloads/gui">MinerGate GUI Miner</a> to mine Stellar on your PC, which is easy for beginners.
+      All you need to do is create an account and log in on the desktop application.</p>
       </td>
       <td class="tdspacer"></td>
-      <td class="currency">
+      <td class="currency" id="4">
         <br>
-        <span class="currencyTitle">Dogecoin</span>
-        <span class="currencyMarket">+3.67 NASDAQ</span>
-        <span class="currencyValue">$0.004</span>
-        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-        <span class="currencyCirculation">116B</span>
-        <p >
+        <span class="currencyTitle"></span>
+        <span class="currencyMarket"></span>
+        <span class="currencyValue"></span>
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;
+        <span class="currencyCirculation"></span>
+        <p class="currencyInfo">To mine Bitcoin, most beginners use the
+        <a class="currencyInfoLink" target="blank" href="https://www.parallelminer.com/product/bitmain-antminer-s7-batch-8-stable-at-4-73ths/">Bitmain Antminer S7,</a> which is configured
+        with the <a class="currencyInfoLink" target="blank" href="https://www.parallelminer.com/product/lite-on-bitmain-antminer-dr3-power-supply-2200-watt-2x1100-110-240v-asic-miner-psu-80-gold-92-efficiency/">Lite-On Bitmain Antminer D3 Power Supply.</a>
+        This can be configured on your computer, and you'll be able to start mining right away.
+        <a class="currencyInfoLink" target="blank" href="https://www.cryptocompare.com/mining/calculator/btc?HashingPower=4730&HashingUnit=GH%2Fs&PowerConsumption=1293&CostPerkWh=0.12&MiningPoolFee=1">Want to calculate profit?</a></p>
+
       </td>
     </tr>
   </table>
+  <br><br><br><br><br><br><br><br>
+  <div class="footer">
+    <br><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <a class="flink"  href="#about">About</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <a class="flink"  href="mailto:ogsteger@gmail.com">Contact</a><br><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <a class="flink"  href="register.html">Register</a> &nbsp; &nbsp; &nbsp;
+    <a class="flink" href="https://www.github.com/oliviasteger">GitHub</a><br><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <a class="flink" href="login.html">Login</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    © 2018
 
+  </div>
   </body>
   </html>
