@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default" style="margin-top: 25px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" style="color: #FFFFFF; margin-left: 100px;" href="/">Block Barter</a>
+    </div>
+    <ul class="nav navbar-nav navbar-left">
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "", about_path %></li>
+      <li><%= link_to "SUPPORT", help_path %></li>
+      <% if logged_in %>
+        <li><%= link_to "CURRENCIES", current_user %></li>
+        <li><%= link_to "WALLETS", "/wallet" %></li>
+        <li style="margin-right: 100px;"><%= link_to "LOG OUT", logout_path, method: :delete %></li>
+      <% else  %>
+        <li><%= link_to "LOG IN", login_path %></li>
+        <li style="margin-right: 100px;"><%= link_to "REGISTER", signup_path %></li>
+      <% end %>
+  </ul>
+  </div>
+</nav>

@@ -1,0 +1,155 @@
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+  function ready(param1, minPrice, maxPrice) {
+    $.getJSON("https://api.myjson.com/bins/u9nnm", function(json) {
+      var q = 1;
+      for (var i = 0; i < 100; i++) {
+        if ((json[i].name).includes(param1)) {
+          if (parseFloat((json[i].price).substr(1)) > minPrice) {
+            if (parseFloat((json[i].price).substr(1)) < maxPrice) {
+              console.log(json[i]);
+              document.getElementById(q).innerHTML = json[i].name;
+              document.getElementById(q+1).innerHTML = " Individual unit value: $" +Math.round(100*parseFloat((json[i].price).substr(1)))/100;
+              document.getElementById(q+2).innerHTML = " Unit change in value in the past 24 hours: " + json[i].change;
+              var supply = 0;
+              supply = json[i].supply;
+              if (supply < 1000) {
+                supply = json[i].supply.toString().split(",")[0];
+              } else if (supply > 999 && supply < 1000000) {
+                supply = json[i].supply.toString().split(",")[0] + "K";
+              } else if (supply > 999999 && supply < 1000000000) {
+                supply = json[i].supply.toString().split(",")[0] + "M";
+              } else {
+                supply = json[i].supply.toString().split(",")[0] + "B";
+              }
+              document.getElementById(q+3).innerHTML = "Total blockchain limit: " + supply;
+              document.getElementById("dec"+q).innerHTML = json[i].name + " Mining";
+              var arr1 = ["Zcash", "Ethereum", "Ethereum Classic", "Bytecoin", "Monero", "Monero Original", "Litecoin", "DigitalNote", "Aeon", "FantomCoin"];
+              var arr2 = ["EOS", "XRP", "Stellar", "Kyber", "0x", "PowerLedger", "Revain", "Pundi X", "Golem", "Chainlink", "Augur", "Nexo", "Loopring", "Digitex Futures", "aelf", "WAX", "Decentraland", "Crypto.com", "CyberMiles", "Polymath", "Loom Network"];
+              var arr3 = ["Cardano", "Tether", "TRON", "TrueUSD", "Huobi Token", "Dai", "Maker", "OmiseGO", "FunFair", "Basic Attenti...", "Waltonchain", "Status", "Aion", "IOST", "Veritaseum", "MobileGO", "MaidSafeCoin", "Paxos", "USD Coin", "HyperCash", "GXChain", "DigixDAO", "ETERNAL TOKEN", "QASH", "Bancor"];
+              var arr4 = ["IOTA", "Dash", "Qtum", "ICON", "Decred", "Ontology", "Lisk", "BitShares", "DigiByte", "Steem", "Waves", "Auroracoin", "MonaCoin", "Populous", "Dropil"];
+              var arr41 = ["Siacoin", "Ravencoin", "Ardor", "Nano", "Verge", "Komodo", "Metaverse ETP", "Electroneum", "Cryptonex", "Wanchain", "Kucoin", "ReddCoin", "Ark", "Nebulas", "Dentacoin", "Aeternity", "Zilliqa", "Bytom", "Horizen", "Holo"];
+              var arr5 = ["Bitcoin", "Binance", "NEO", "Tezos", "NEM", "VeChain", "Dogecoin", "Stratis", "PIVX", "Bitcoin Cash", "Bitcoin Diamond", "Bitcoin Gold", "Mithril"];
+              if (arr1.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = json[i].name + " can be mined using MinerGate software and the MinerGate online interface. You do not need to purchase extra mining equipment to mine it.";
+              } else if (arr2.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = json[i].name + " is only issued by developers and is not currently available for mining or sale. Check the currency's website for updates to this status.";
+              } else if (arr3.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = json[i].name + " must be purchased directly from a supplier or an affiliated trading network. It is recommended by industry experts that one uses Changelly, Bittrix, Binance, or another verified service to buy or trade " + json[i].name + ".";
+              } else if (arr4.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = "You will need to download a wallet specifically for " + json[i].name + " from the developer's website. You can enter your wallet address on a website that will mine using your computer, or download mining software and enter your wallet address.";
+              } else if (arr41.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = "You will need to download a wallet specifically for " + json[i].name + " from the developer's website. You can enter your wallet address on a website that will mine using your computer, or download mining software and enter your wallet address.";
+              } else if (arr5.includes(json[i].name)) {
+                document.getElementById("currency-desc-info"+q).innerHTML = "It is recommended that you use specialized hardware to mine " + json[i].name + ". It uses a lot of energy to solve the hashing algorithms and can overheat and ruin a regular PC.";
+              }
+              q = q+4;
+            }
+          }
+        }
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    ready("", 0, 1000000);
+  });
+
+
+</script>
+<center>
+<h1 class="h1-about-page">Hello, <%= @user.first_name %>!</h1>
+<p>Click one of the options below to filter the currencies.</p>
+<button class="filter-button" id="Token" onclick="ready('Token', 0, 100000)">Tokens</button> &nbsp; <button class="filter-button" id="Bitcoin" onclick="ready('Bitcoin', 0, 100000)">Bitcoin</button> &nbsp; <button class="filter-button" id="Altcoin" onclick="ready('', 0, 100000)">Altcoin</button> &nbsp;
+<button class="filter-button" id="010" onclick="ready('', 0, 10)">$0 - $10</button> &nbsp; <button class="filter-button" id="10100" onclick="ready('', 10, 100)">$10 - $100</button> &nbsp; <button class="filter-button" id="100" onclick="ready('', 100, 10000000)">$100+</button>
+</center>
+<br><br><br>
+<table class="currency-container">
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="1" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="2"></li>
+        <li id="3"></li>
+        <li id="4"></li>
+        </ul>
+      </div>
+    </td>
+    <td class="currency-break"></td>
+    <td class="currency-desc">
+      <h2 id="dec1" class="currency-dec-header"></h2>
+      <div class="desc-dots"></div>
+      <div class="currency-desc-info" id="currency-desc-info1"></div>
+    </td>
+  </tr>
+
+  <tr class="currency-row-break"></tr>
+
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="5" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="6"></li>
+        <li id="7"></li>
+        <li id="8"></li>
+        </ul>
+    </td>
+    <td class="currency-break"></td>
+    <td class="currency-desc">
+      <h2 id="dec5" class="currency-dec-header"></h2>
+      <div class="desc-dots"></div>
+      <div class="currency-desc-info" id="currency-desc-info5"></div>
+    </td>
+  </tr>
+
+  <tr class="currency-row-break"></tr>
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="9" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="10"></li>
+        <li id="11"></li>
+        <li id="12"></li>
+        </ul>
+      </div>
+    </td>
+    <td class="currency-break">
+    </td>
+    <td class="currency-desc">
+      <h2 id="dec9" class="currency-dec-header"></h2>
+      <div class="desc-dots"></div>
+      <div class="currency-desc-info" id="currency-desc-info9"></div>
+    </td>
+  </tr>
+
+  <tr class="currency-row-break"></tr>
+
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="13" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="14"></li>
+        <li id="15"></li>
+        <li id="16"></li>
+        </ul>
+      </div>
+    </td>
+    <td class="currency-break">
+    <td class="currency-desc">
+      <h2 id="dec13" class="currency-dec-header"></h2>
+      <div class="desc-dots"></div>
+      <div class="currency-desc-info" id="currency-desc-info13"></div>
+    </td>
+  </tr>
+
+</table>
+
+<br><br><br><br><br><br><br>

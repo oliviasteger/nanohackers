@@ -1,0 +1,95 @@
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+  function ready(param1, param2, param3, minPrice, maxPrice) {
+    $.getJSON("https://api.myjson.com/bins/z02ri", function(json) {
+      var q = 1;
+      for (var i = 0; i < 100; i++) {
+        if ((json[i].name).includes(param1)) {
+          if (parseFloat((json[i].price).substr(1)) > minPrice) {
+            if (parseFloat((json[i].price).substr(1)) < maxPrice) {
+              if ((json[i].friendliness).includes(param2)) {
+                if ((json[i].type).includes(param3)) {
+                  console.log(json[i]);
+                  document.getElementById(q).innerHTML = json[i].name;
+                  document.getElementById(q+1).innerHTML = " Price per wallet: $" +Math.round(100*parseFloat((json[i].price).substr(1)))/100;
+                  document.getElementById(q+2).innerHTML = " Experience level necessary: " + json[i].friendliness;
+                  document.getElementById(q+3).innerHTML = "Type of wallet: " + json[i].type;
+                  q = q+4;
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    ready("", "", "", -1, 1000000);
+  });
+
+
+</script>
+<center>
+<h1 class="h1-about-page">Hello!</h1>
+<p>Click one of the options below to filter the wallets.</p>
+<button class="filter-button" id="Hardware" onclick="ready('', '', 'Hardware', 0, 100000)">Hardware</button> &nbsp; <button class="filter-button" id="Hot" onclick="ready('', '', 'Hot', -1, 100000)">Hot</button> &nbsp; <button class="filter-button" id="Software" onclick="ready('', '', 'Software', -1, 100000)">Software</button> &nbsp;
+<button class="filter-button" id="Paper" onclick="ready('', '', 'Paper', -1, 100000)">Paper</button> &nbsp; <button class="filter-button" id="Hot" onclick="ready('', 'beginner', '', -1, 100000)">Beginners</button> &nbsp; <button class="filter-button" id="Software" onclick="ready('', 'expert', '', -1, 100000)">Experts</button> &nbsp;
+</center>
+<br><br><br>
+<table class="currency-container">
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="1" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="2"></li>
+        <li id="3"></li>
+        <li id="4"></li>
+        </ul>
+      </div>
+    </td>
+    <td class="currency-break"></td>
+    <td class="currency">
+      <h2 id="5" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="6"></li>
+        <li id="7"></li>
+        <li id="8"></li>
+        </ul>
+    </td>
+  </tr>
+
+  <tr class="currency-row-break"></tr>
+  <tr class="currency-row">
+    <td class="currency">
+      <h2 id="9" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="10"></li>
+        <li id="11"></li>
+        <li id="12"></li>
+        </ul>
+      </div>
+    </td>
+    <td class="currency-break">
+    </td>
+    <td class="currency">
+      <h2 id="13" class="currency-header"></h2>
+      <div id="currency-info">
+        <div class="dots"></div>
+        <ul>
+        <li id="14"></li>
+        <li id="15"></li>
+        <li id="16"></li>
+        </ul>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<br><br><br><br><br><br><br>
